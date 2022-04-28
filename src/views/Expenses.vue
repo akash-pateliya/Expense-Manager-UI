@@ -1,7 +1,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: 'Posts',
+  name: 'Expenses',
   components: {
     
   },
