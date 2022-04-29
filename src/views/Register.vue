@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { mapActions } from "vuex";
 export default {
   name: "Register",
@@ -6,8 +7,9 @@ export default {
   data() {
     return {
       form: {
-        username: "",
-        full_name: "",
+        userName: "",
+        fullName: "",
+        email: "",
         password: "",
       },
       showError: false
@@ -18,12 +20,16 @@ export default {
     async submit() {
       try {
         await this.Register(this.form);
-        this.$router.push("/posts");
+        window.alert('Registration Successfull !!');
+        this.$router.push("/login");
         this.showError = false
       } catch (error) {
         this.showError = true
       }
     },
+    async Register(formData){
+      await axios.post('register', formData);
+    }
   },
 };
 </script>
@@ -33,12 +39,16 @@ export default {
       <div>
           <form @submit.prevent="submit">
             <div>
-              <label for="username">Username:</label>
-              <input type="text" name="username" v-model="form.username">
+              <label for="fullName">Full Name:</label>
+              <input type="text" name="fullName" v-model="form.fullName">
+            </div>
+             <div>
+              <label for="userName">Username:</label>
+              <input type="text" name="userName" v-model="form.userName">
             </div>
             <div>
-              <label for="full_name">Full Name:</label>
-              <input type="text" name="full_name" v-model="form.full_name">
+              <label for="email">Email:</label>
+              <input type="text" name="email" v-model="form.email">
             </div>
             <div>
               <label for="password">Password:</label>
@@ -47,7 +57,7 @@ export default {
             <button type="submit"> Submit</button>
           </form>
       </div>
-      <p v-if="showError" id="error">Username already exists</p>
+      <p v-if="showError" id="error">userName already exists</p>
   </div>
 </template>
 <style scoped>
