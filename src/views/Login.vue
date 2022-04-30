@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
 export default {
   name: "Login",
   components: {},
@@ -15,19 +16,21 @@ export default {
   methods: {
     ...mapActions(["LogIn"]),
     async submit() {
-      const User = new FormData();
-      User.append("username", this.form.username);
-      User.append("password", this.form.password);
       try {
-          await this.LogIn(User);
-          this.$router.push("/dashboard");
-          this.showError = false
+          const response = await this.logIn(this.form);
+          if (response.data.status) {
+            sessionStorage.setItem("token", response.data.token);
+            this.$router.push("/dashboard");
+          }
+          else{
+            window.alert(response.data.message)
+          }
       } catch (error) {
         this.showError = true
       }
     },
     async logIn(userData){
-      await axios.post('/login', userData);
+      return await axios.post('/login', userData);
     }
   },
 };
