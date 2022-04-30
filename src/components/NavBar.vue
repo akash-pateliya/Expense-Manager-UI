@@ -1,9 +1,9 @@
 <template>
   <div id="nav">
     <router-link to="/">Dashboard</router-link> |
-    <router-link to="/Expenses">Expenses</router-link> |
+    <router-link to="/expenses">Expenses</router-link> |
     <span v-if="isLoggedIn">
-      <a @click="logout">Logout</a>
+      <a>Logout</a>
     </span>
     <span v-else>
       <router-link to="/register">Register</router-link> |
@@ -15,7 +15,7 @@
 export default {
   name: 'NavBar',
   computed : {
-      isLoggedIn : function(){ return this.$store.getters.isAuthenticated}
+      isLoggedIn : function(){ return sessionStorage.getItem('token') !== null }
     },
     methods: {
       async logout (){

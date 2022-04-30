@@ -1,9 +1,10 @@
 
 import { createRouter, createWebHistory } from "vue-router";
-import DashboardVue from "../views/Dashboard.vue";
-import LoginVue from "../views/Login.vue";
-import RegisterVue from "../views/Register.vue";
-import ExpensesVue from "../views/Expenses.vue";
+import DashboardVue from "../views/dashboard/Dashboard.vue";
+import LoginVue from "../views/auth/Login.vue";
+import RegisterVue from "../views/auth/Register.vue";
+import ExpensesVue from "../views/expenses/Expenses.vue";
+import addExpenseVue from "../views/expenses/add-expense.vue";
 
 const routes = createRouter({
   history : createWebHistory(''),
@@ -26,11 +27,17 @@ const routes = createRouter({
       meta: { guest: true },
     },
     {
-      path: "/Expenses",
+      path: "/expenses",
       name: "Expenses",
       component: ExpensesVue,
       meta: { requiresAuth: true },
     },
+    {
+      path: "/add-expense",
+      name: "Add-Expense",
+      component: addExpenseVue,
+      meta: { requiresAuth: true }
+    }
   ]
 })
 
