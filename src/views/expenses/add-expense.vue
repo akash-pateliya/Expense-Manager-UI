@@ -78,7 +78,7 @@ export default {
           currency : currency,
           description : description,
           category_id : Number(category_id),
-          createdBy : sessionStorage.getItem('user_id')
+          username : sessionStorage.getItem('username')
       }
       await axios.post('/add-expense', formData);
       window.alert('Expense added successfully !!');
