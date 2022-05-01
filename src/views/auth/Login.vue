@@ -20,7 +20,7 @@ export default {
           const response = await this.logIn(this.form);
           if (response.data.status) {
             sessionStorage.setItem("token", response.data.token);
-            sessionStorage.setItem("username", response.data.userName);
+            sessionStorage.setItem("username", response.data.username);
             this.$router.push("/dashboard");
           }
           else{

@@ -78,7 +78,8 @@ export default {
           currency : currency,
           description : description,
           category_id : Number(category_id),
-          username : sessionStorage.getItem('username')
+          username : sessionStorage.getItem('username'),
+          token : sessionStorage.getItem('token')
       }
       await axios.post('/add-expense', formData);
       window.alert('Expense added successfully !!');
