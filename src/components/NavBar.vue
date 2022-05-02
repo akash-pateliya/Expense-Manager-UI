@@ -19,7 +19,9 @@ export default {
     },
     methods: {
       async logout (){
-        await this.$store.dispatch('LogOut')
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('token');
+        window.alert("Logout successfully !!");
         this.$router.push('/login')
       }
     },
